@@ -1,35 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { DeadlineForm } from "./features/deadlines/components/DeadlineForm";
+import { DeadlineList } from "./features/deadlines/components/DeadlineList";
+import { useDeadlines } from "./features/deadlines/hooks/useDeadlines";
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const dl = useDeadlines();
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="min-h-screen bg-neutral-50">
+      <div className="mx-auto max-w-6xl p-6">
+        <div className="mb-6">
+          <div className="text-2xl font-bold">Court Deadline Tracker</div>
+          <div className="text-sm text-black/60">
+            CPR-style clear days + short-period business-day rule + deemed service.
+          </div>
+        </div>
 
-export default App
+        <div className="grid gap-6 lg:grid-cols-[420px_1fr]">
+          <DeadlineForm onCreate={dl.add} />
+          <DeadlineList items={dl.items} onRemove={dl.remove} />
+        </div>
+
+        <div className="mt-6 text-xs text-black/50">
+          Note: This tool helps with calculation logic but isn’t legal advice.
+        </div>
+      </div>
+    </div>
+  );
+}
