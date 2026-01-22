@@ -1,14 +1,26 @@
-const express = require('express');
-const router = express.Router();
 const { calculateDeadline } = require('../utils/dateCalculations');
 
-// Health check route
-router.get('/health', (req, res) => {
-  res.json({ status: 'OK', message: 'API is running' });
-});
+// Serverless function for calculating deadline
+// Accessible at /api/calculate-deadline
+module.exports = async (req, res) => {
+  // Enable CORS
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-// Calculate deadline route
-router.post('/calculate-deadline', (req, res) => {
+  // Handle preflight requests
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
+  // Only allow POST requests
+  if (req.method !== 'POST') {
+    return res.status(405).json({ 
+      success: false, 
+      error: 'Method not allowed. Use POST.' 
+    });
+  }
+
   try {
     const {
       courtType,
@@ -23,12 +35,12 @@ router.post('/calculate-deadline', (req, res) => {
     // Validate request body
     if (!courtType) {
       return res.status(400).json({ 
+        success: false,
         error: 'Missing required field: courtType' 
       });
     }
 
-    console.log('called calculateDeadline');
-    // Calculate deadline
+    // Calculate deadline using the utility function
     const result = calculateDeadline({
       courtType,
       commercialCourtType,
@@ -40,7 +52,7 @@ router.post('/calculate-deadline', (req, res) => {
     });
 
     // Return result with formatted date
-    res.json({
+    res.status(200).json({
       success: true,
       deadline: result.deadline.toISOString().split('T')[0], // Format as YYYY-MM-DD
       deadlineDate: result.deadline,
@@ -53,6 +65,4 @@ router.post('/calculate-deadline', (req, res) => {
       error: error.message || 'Invalid calculation request'
     });
   }
-});
-
-module.exports = router;
+};

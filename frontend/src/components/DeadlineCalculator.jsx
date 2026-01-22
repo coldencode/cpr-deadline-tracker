@@ -41,7 +41,7 @@ const DeadlineCalculator = () => {
     return false;
   };
 
-  // Calculate deadline via API
+  // Calculate deadline via serverless function API
   const calculateDeadline = async () => {
     if (!canCalculate()) {
       setDeadline(null);
@@ -81,7 +81,7 @@ const DeadlineCalculator = () => {
         setCalculationDetails('');
       }
     } catch (err) {
-      setError('Error connecting to server. Please make sure the backend is running.');
+      setError('Error connecting to serverless function. Please try again.');
       setDeadline(null);
       setCalculationDetails('');
       console.error('Calculation error:', err);

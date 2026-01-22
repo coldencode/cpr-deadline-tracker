@@ -13,23 +13,11 @@
   "license": "ISC",
   "author": "",
   "type": "commonjs",
-  "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js",
+    "dev:local": "vercel dev",
     "build": "cd frontend && npm install && npm run build",
     "vercel-build": "cd frontend && npm install && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {
-    "bootstrap": "^5.3.8",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "ejs": "^4.0.1",
-    "express": "^5.2.1",
-    "mongoose": "^8.1.1"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.0"
-  }
+  "dependencies": {}
 }
