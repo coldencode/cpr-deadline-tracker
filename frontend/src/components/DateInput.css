@@ -36,6 +36,22 @@
   transform: translateY(-2px);
 }
 
+/* Date picker icon styling for dark mode */
+.date-input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: invert(0);
+  transition: filter 0.3s ease;
+}
+
+[data-theme="dark"] .date-input::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  opacity: 0.8;
+}
+
+.date-input::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
 .date-input-help {
   margin: 0;
   font-size: 0.85rem;

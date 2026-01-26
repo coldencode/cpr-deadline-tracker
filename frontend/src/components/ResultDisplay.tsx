@@ -2,7 +2,12 @@ import React from 'react';
 import { formatDate } from '../utils/dateCalculations';
 import './ResultDisplay.css';
 
-const ResultDisplay = ({ deadline, calculationDetails }) => {
+interface ResultDisplayProps {
+  deadline: Date | null;
+  calculationDetails: string;
+}
+
+const ResultDisplay: React.FC<ResultDisplayProps> = ({ deadline, calculationDetails }) => {
   if (!deadline) return null;
 
   return (

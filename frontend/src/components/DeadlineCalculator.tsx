@@ -7,36 +7,53 @@ import LoadingBar from './LoadingBar';
 import FAQ from './FAQ';
 import './DeadlineCalculator.css';
 
-const DeadlineCalculator = () => {
+interface CalculateDeadlineRequest {
+  courtType: string;
+  commercialCourtType?: string;
+  isAdmiraltyRem?: boolean | null;
+  claimFormIssued?: string;
+  claimFormServed?: string;
+  acknowledgmentFiled?: string;
+  servedWithinEngland?: boolean | null;
+}
+
+interface CalculateDeadlineResponse {
+  success: boolean;
+  deadline?: string;
+  calculationDetails?: string;
+  error?: string;
+}
+
+const DeadlineCalculator: React.FC = () => {
   // Flowchart state
-  const [courtType, setCourtType] = useState('');
-  const [commercialCourtType, setCommercialCourtType] = useState('');
-  const [isAdmiraltyRem, setIsAdmiraltyRem] = useState(null);
+  const [courtType, setCourtType] = useState<string>('');
+  const [commercialCourtType, setCommercialCourtType] = useState<string>('');
+  const [isAdmiraltyRem, setIsAdmiraltyRem] = useState<boolean | null>(null);
   
   // Dates
-  const [claimFormIssued, setClaimFormIssued] = useState('');
-  const [claimFormServed, setClaimFormServed] = useState('');
-  const [acknowledgmentFiled, setAcknowledgmentFiled] = useState('');
-  const [servedWithinEngland, setServedWithinEngland] = useState(null);
+  const [claimFormIssued, setClaimFormIssued] = useState<string>('');
+  const [claimFormServed, setClaimFormServed] = useState<string>('');
+  const [acknowledgmentFiled, setAcknowledgmentFiled] = useState<string>('');
+  const [servedWithinEngland, setServedWithinEngland] = useState<boolean | null>(null);
   
   // Result
-  const [deadline, setDeadline] = useState(null);
-  const [calculationDetails, setCalculationDetails] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [deadline, setDeadline] = useState<Date | null>(null);
+  const [calculationDetails, setCalculationDetails] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   // Check if all required fields are filled for current path
-  const canCalculate = () => {
+  const canCalculate = (): boolean => {
     if (courtType === 'no') {
-      return claimFormIssued && claimFormServed && servedWithinEngland !== null;
+      return claimFormIssued !== '' && claimFormServed !== '' && servedWithinEngland !== null;
     } else if (courtType === 'yes') {
       if (commercialCourtType === 'commercial' || commercialCourtType === 'circuit') {
-        return acknowledgmentFiled;
+        return acknowledgmentFiled !== '';
       } else if (commercialCourtType === 'admiralty') {
         if (isAdmiraltyRem === true) {
-          return claimFormServed;
+          return claimFormServed !== '';
         } else if (isAdmiraltyRem === false) {
-          return acknowledgmentFiled;
+          return acknowledgmentFiled !== '';
         }
       }
     }
@@ -44,7 +61,7 @@ const DeadlineCalculator = () => {
   };
 
   // Calculate deadline via serverless function API
-  const calculateDeadline = async () => {
+  const calculateDeadline = async (): Promise<void> => {
     if (!canCalculate()) {
       setDeadline(null);
       setCalculationDetails('');
@@ -56,27 +73,29 @@ const DeadlineCalculator = () => {
     setError(null);
 
     try {
+      const requestBody: CalculateDeadlineRequest = {
+        courtType,
+        commercialCourtType,
+        isAdmiraltyRem,
+        claimFormIssued,
+        claimFormServed,
+        acknowledgmentFiled,
+        servedWithinEngland
+      };
+
       const response = await fetch('/api/calculate-deadline', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          courtType,
-          commercialCourtType,
-          isAdmiraltyRem,
-          claimFormIssued,
-          claimFormServed,
-          acknowledgmentFiled,
-          servedWithinEngland
-        }),
+        body: JSON.stringify(requestBody),
       });
 
-      const data = await response.json();
+      const data: CalculateDeadlineResponse = await response.json();
 
-      if (data.success) {
+      if (data.success && data.deadline) {
         setDeadline(new Date(data.deadline));
-        setCalculationDetails(data.calculationDetails);
+        setCalculationDetails(data.calculationDetails || '');
       } else {
         setError(data.error || 'Failed to calculate deadline');
         setDeadline(null);
@@ -109,7 +128,7 @@ const DeadlineCalculator = () => {
     servedWithinEngland
   ]);
 
-  const resetForm = () => {
+  const resetForm = (): void => {
     setCourtType('');
     setCommercialCourtType('');
     setIsAdmiraltyRem(null);

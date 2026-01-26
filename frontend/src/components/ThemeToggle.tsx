@@ -1,7 +1,12 @@
 import React from 'react';
 import './ThemeToggle.css';
 
-const ThemeToggle = ({ isDark, toggleTheme }) => {
+interface ThemeToggleProps {
+  isDark: boolean;
+  toggleTheme: () => void;
+}
+
+const ThemeToggle: React.FC<ThemeToggleProps> = ({ isDark, toggleTheme }) => {
   return (
     <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
       <div className={`toggle-slider ${isDark ? 'dark' : 'light'}`}>

@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import './FAQ.css';
 
-const FAQ = () => {
-  const [openIndex, setOpenIndex] = useState(null);
+interface FAQItem {
+  question: string;
+  answer: string;
+}
 
-  const faqs = [
+const FAQ: React.FC = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const faqs: FAQItem[] = [
     {
       question: 'What is this for?',
       answer: 'This is a CPR (Civil Procedure Rules) deadline calculator for legal professionals. It helps calculate the deadline to serve Particulars of Claim when served separately from the Claim Form, based on various court types and service conditions.'
@@ -39,7 +44,7 @@ const FAQ = () => {
     }
   ];
 
-  const toggleFAQ = (index) => {
+  const toggleFAQ = (index: number): void => {
     setOpenIndex(openIndex === index ? null : index);
   };
 

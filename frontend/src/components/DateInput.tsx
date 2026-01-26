@@ -1,7 +1,21 @@
 import React from 'react';
 import './DateInput.css';
 
-const DateInput = ({ label, value, onChange, required = false, helpText }) => {
+interface DateInputProps {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  required?: boolean;
+  helpText?: string;
+}
+
+const DateInput: React.FC<DateInputProps> = ({ 
+  label, 
+  value, 
+  onChange, 
+  required = false, 
+  helpText 
+}) => {
   return (
     <div className="date-input-group">
       <label className="date-input-label">

@@ -4,7 +4,7 @@ import ThemeToggle from './components/ThemeToggle';
 import './App.css';
 
 function App() {
-  const [isDark, setIsDark] = useState(() => {
+  const [isDark, setIsDark] = useState<boolean>(() => {
     // Check localStorage or default to light mode
     const saved = localStorage.getItem('theme');
     return saved ? saved === 'dark' : false;
@@ -16,7 +16,7 @@ function App() {
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
   }, [isDark]);
 
-  const toggleTheme = () => {
+  const toggleTheme = (): void => {
     setIsDark(!isDark);
   };
 

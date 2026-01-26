@@ -1,7 +1,19 @@
 import React from 'react';
 import './RadioGroup.css';
 
-const RadioGroup = ({ options, value, onChange, name }) => {
+interface RadioOption {
+  value: string;
+  label: string;
+}
+
+interface RadioGroupProps {
+  options: RadioOption[];
+  value: string;
+  onChange: (value: string) => void;
+  name: string;
+}
+
+const RadioGroup: React.FC<RadioGroupProps> = ({ options, value, onChange, name }) => {
   return (
     <div className="radio-group">
       {options.map((option) => (

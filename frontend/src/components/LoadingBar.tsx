@@ -1,7 +1,7 @@
 import React from 'react';
 import './LoadingBar.css';
 
-const LoadingBar = () => {
+const LoadingBar: React.FC = () => {
   return (
     <div className="loading-bar-container">
       <div className="loading-text">Calculating deadline...</div>
