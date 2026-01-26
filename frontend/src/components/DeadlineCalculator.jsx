@@ -3,6 +3,8 @@ import QuestionCard from './QuestionCard';
 import DateInput from './DateInput';
 import RadioGroup from './RadioGroup';
 import ResultDisplay from './ResultDisplay';
+import LoadingBar from './LoadingBar';
+import FAQ from './FAQ';
 import './DeadlineCalculator.css';
 
 const DeadlineCalculator = () => {
@@ -254,11 +256,7 @@ const DeadlineCalculator = () => {
         )}
 
         {/* Loading Indicator */}
-        {loading && (
-          <div className="loading-display">
-            <p>Calculating deadline...</p>
-          </div>
-        )}
+        {loading && <LoadingBar />}
 
         {/* Result Display */}
         {deadline && !loading && (
@@ -273,6 +271,9 @@ const DeadlineCalculator = () => {
             </button>
           </div>
         )}
+
+        {/* FAQ Section */}
+        <FAQ />
       </div>
     </div>
   );

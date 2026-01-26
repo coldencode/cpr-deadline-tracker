@@ -1,0 +1,140 @@
+/**
+ * Color System - Centralized color definitions
+ * Update colors here to change the entire theme
+ */
+
+:root {
+  /* Primary Colors */
+  --color-primary: #667eea;
+  --color-primary-dark: #764ba2;
+  --color-primary-light: #f093fb;
+  --color-secondary: #4facfe;
+  --color-accent: #00f2fe;
+
+  /* Gradient Colors */
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #4facfe 100%);
+  --gradient-accent: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+  --gradient-button: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  --gradient-text: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+  /* Background Colors - Light Mode */
+  --bg-primary-light: #ffffff;
+  --bg-secondary-light: rgba(255, 255, 255, 0.9);
+  --bg-card-light: rgba(255, 255, 255, 0.7);
+  --bg-card-hover-light: rgba(255, 255, 255, 0.85);
+  --bg-input-light: rgba(255, 255, 255, 0.7);
+  --bg-radio-light: rgba(255, 255, 255, 0.5);
+  --bg-radio-hover-light: rgba(102, 126, 234, 0.1);
+
+  /* Background Colors - Dark Mode */
+  --bg-primary-dark: rgba(30, 30, 46, 0.95);
+  --bg-secondary-dark: rgba(20, 20, 35, 0.9);
+  --bg-card-dark: rgba(30, 30, 46, 0.8);
+  --bg-card-hover-dark: rgba(30, 30, 46, 0.9);
+  --bg-input-dark: rgba(30, 30, 46, 0.6);
+  --bg-radio-dark: rgba(30, 30, 46, 0.6);
+  --bg-radio-hover-dark: rgba(102, 126, 234, 0.2);
+
+  /* Background Gradients */
+  --bg-gradient-light: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+  --bg-gradient-dark: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #1a1a2e 75%, #16213e 100%);
+
+  /* Text Colors - Light Mode */
+  --text-primary-light: #333;
+  --text-secondary-light: #666;
+  --text-muted-light: #999;
+
+  /* Text Colors - Dark Mode */
+  --text-primary-dark: #e4e4e7;
+  --text-secondary-dark: #a1a1aa;
+  --text-muted-dark: #71717a;
+
+  /* Border Colors */
+  --border-light: rgba(0, 0, 0, 0.1);
+  --border-dark: rgba(255, 255, 255, 0.1);
+  --border-hover-light: #667eea;
+  --border-hover-dark: #667eea;
+
+  /* Shadow Colors */
+  --shadow-light: rgba(0, 0, 0, 0.1);
+  --shadow-medium-light: rgba(0, 0, 0, 0.15);
+  --shadow-dark-light: rgba(0, 0, 0, 0.2);
+  --shadow-dark: rgba(0, 0, 0, 0.3);
+  --shadow-medium-dark: rgba(0, 0, 0, 0.4);
+  --shadow-primary: rgba(102, 126, 234, 0.4);
+  --shadow-primary-dark: rgba(76, 29, 149, 0.5);
+  --shadow-error: rgba(231, 76, 60, 0.3);
+
+  /* Error Colors */
+  --error-bg-light: rgba(254, 238, 238, 0.9);
+  --error-bg-dark: rgba(127, 29, 29, 0.3);
+  --error-border: #e74c3c;
+  --error-text-light: #c0392b;
+  --error-text-dark: #ff6b6b;
+
+  /* Result Display Colors */
+  --result-gradient-light: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --result-gradient-dark: linear-gradient(135deg, #4c1d95 0%, #6b21a8 100%);
+  --result-overlay-light: rgba(255, 255, 255, 0.2);
+  --result-overlay-dark: rgba(255, 255, 255, 0.1);
+
+  /* Theme Toggle Colors */
+  --toggle-bg-light: rgba(255, 255, 255, 0.1);
+  --toggle-bg-hover-light: rgba(255, 255, 255, 0.15);
+  --toggle-bg-dark: rgba(0, 0, 0, 0.3);
+  --toggle-bg-hover-dark: rgba(0, 0, 0, 0.4);
+  --toggle-border-light: rgba(255, 255, 255, 0.2);
+  --toggle-border-dark: rgba(255, 255, 255, 0.1);
+}
+
+/* Apply colors based on theme */
+:root {
+  --bg-primary: var(--bg-primary-light);
+  --bg-secondary: var(--bg-secondary-light);
+  --bg-card: var(--bg-card-light);
+  --bg-card-hover: var(--bg-card-hover-light);
+  --bg-input: var(--bg-input-light);
+  --bg-radio: var(--bg-radio-light);
+  --bg-radio-hover: var(--bg-radio-hover-light);
+  --text-primary: var(--text-primary-light);
+  --text-secondary: var(--text-secondary-light);
+  --text-muted: var(--text-muted-light);
+  --border-color: var(--border-light);
+  --border-hover: var(--border-hover-light);
+  --shadow: var(--shadow-light);
+  --shadow-medium: var(--shadow-medium-light);
+  --shadow-dark: var(--shadow-dark-light);
+  --error-bg: var(--error-bg-light);
+  --error-text: var(--error-text-light);
+  --result-gradient: var(--result-gradient-light);
+  --result-overlay: var(--result-overlay-light);
+  --toggle-bg: var(--toggle-bg-light);
+  --toggle-bg-hover: var(--toggle-bg-hover-light);
+  --toggle-border: var(--toggle-border-light);
+}
+
+[data-theme="dark"] {
+  --bg-primary: var(--bg-primary-dark);
+  --bg-secondary: var(--bg-secondary-dark);
+  --bg-card: var(--bg-card-dark);
+  --bg-card-hover: var(--bg-card-hover-dark);
+  --bg-input: var(--bg-input-dark);
+  --bg-radio: var(--bg-radio-dark);
+  --bg-radio-hover: var(--bg-radio-hover-dark);
+  --text-primary: var(--text-primary-dark);
+  --text-secondary: var(--text-secondary-dark);
+  --text-muted: var(--text-muted-dark);
+  --border-color: var(--border-dark);
+  --border-hover: var(--border-hover-dark);
+  --shadow: var(--shadow-dark);
+  --shadow-medium: var(--shadow-medium-dark);
+  --shadow-dark: var(--shadow-dark);
+  --error-bg: var(--error-bg-dark);
+  --error-text: var(--error-text-dark);
+  --result-gradient: var(--result-gradient-dark);
+  --result-overlay: var(--result-overlay-dark);
+  --toggle-bg: var(--toggle-bg-dark);
+  --toggle-bg-hover: var(--toggle-bg-hover-dark);
+  --toggle-border: var(--toggle-border-dark);
+}

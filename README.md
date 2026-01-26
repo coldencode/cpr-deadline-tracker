@@ -1,120 +1,71 @@
-# CPR Deadline Tracker - MERN Stack
+# CPR Deadline Tracker
 
-A MERN stack application for tracking CPR deadlines with a flowchart-based date calculator.
+A single-page application for calculating CPR deadlines with a flowchart-based date calculator using React and Vercel serverless functions.
 
 ## Tech Stack
 
-- **MongoDB** - Database
-- **Express.js** - Backend framework
 - **React** - Frontend framework (Vite)
+- **Vercel Serverless Functions** - Backend API
 - **Node.js** - Runtime environment
 
 ## Local Development
 
-### 1. Install Dependencies
+### 1. Install Vercel CLI
 
-**Backend:**
 ```bash
-npm install
+npm i -g vercel
 ```
 
-**Frontend:**
+### 2. Install Frontend Dependencies
+
 ```bash
 cd frontend
 npm install
 cd ..
 ```
 
-### 2. Set Up Environment Variables
+### 3. Run Locally
 
-Create a `.env` file in the root directory:
+Start the development server:
 
-```env
-MONGODB_URI=mongodb://localhost:27017/cpr-deadline-tracker
-PORT=3000
-NODE_ENV=development
-```
-
-**For MongoDB Atlas (cloud):**
-```env
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/cpr-deadline-tracker
-```
-
-### 3. Start MongoDB
-
-**Option A: Local MongoDB**
-Make sure MongoDB is running on your machine:
 ```bash
-# macOS (if installed via Homebrew)
-brew services start mongodb-community
-
-# Or start manually
-mongod
+vercel dev
 ```
 
-**Option B: MongoDB Atlas**
-- Sign up at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
-- Create a free cluster
-- Get your connection string and add it to `.env`
+Or use the npm script:
 
-### 4. Start the Backend Server
-
-**Development mode (with auto-reload):**
 ```bash
-npm run dev
+npm run dev:local
 ```
 
-**Production mode:**
-```bash
-npm start
-```
+This will:
+- Start Vercel's local dev server
+- Serve your React frontend
+- Run your serverless functions at `/api/calculate-deadline`
+- Usually runs on `http://localhost:3000`
 
-The backend server will start on `http://localhost:3000`
+**First time setup:** When you run `vercel dev` for the first time, you can skip linking to a Vercel project for local development.
 
-### 5. Start the React Frontend
+### Alternative: Frontend Only
 
-Open a new terminal window and run:
+If you just want to test the UI (API calls will fail):
 
 ```bash
 cd frontend
 npm run dev
 ```
 
-The React app will start on `http://localhost:5173`
-
-**To run both simultaneously**, you can:
-- Open two terminal windows (one for backend, one for frontend)
-- Or use a process manager like `concurrently` (see below)
-
-## Running Both Frontend and Backend Together
-
-You can install `concurrently` to run both servers with one command:
-
-```bash
-npm install --save-dev concurrently
-```
-
-Then add this script to the root `package.json`:
-```json
-"dev:all": "concurrently \"npm run dev\" \"cd frontend && npm run dev\""
-```
-
-Run with:
-```bash
-npm run dev:all
-```
+Runs on `http://localhost:5173`
 
 ## Project Structure
 
 ```
 cpr-deadline-tracker/
 ├── api/
-│   └── index.js              # Vercel serverless function wrapper
-├── app.js                     # Main Express server file
-├── routes/
-│   └── api.js                 # API routes
+│   ├── calculate-deadline.js  # Serverless function for deadline calculation
+│   └── health.js               # Health check endpoint
 ├── utils/
-│   └── dateCalculations.js   # Backend date calculation logic
+│   └── dateCalculations.js   # Date calculation logic
 ├── frontend/                  # React frontend
 │   ├── src/
 │   │   ├── components/       # React components
@@ -124,7 +75,6 @@ cpr-deadline-tracker/
 │   ├── index.html
 │   ├── vite.config.js
 │   └── package.json
-├── .env                       # Environment variables (create this)
 ├── vercel.json                # Vercel deployment configuration
 ├── package.json
 └── README.md
@@ -132,7 +82,6 @@ cpr-deadline-tracker/
 
 ## API Endpoints
 
-- `GET /` - Welcome message
 - `GET /api/health` - Health check
 - `POST /api/calculate-deadline` - Calculate deadline based on flowchart logic
 
@@ -155,34 +104,24 @@ Or for production:
 vercel --prod
 ```
 
-### Environment Variables on Vercel
-
-Make sure to set these in your Vercel project settings:
-- `MONGODB_URI` - Your MongoDB connection string
-- `NODE_ENV` - Set to `production`
-
-You can set them via:
-- Vercel Dashboard → Project Settings → Environment Variables
-- Or CLI: `vercel env add MONGODB_URI`
-
 ### How It Works
 
 - **Frontend**: Built with Vite and served as static files
-- **Backend**: Express API runs as Vercel serverless functions
+- **Backend**: Serverless functions handle API requests
 - **Routing**: Vercel rewrites handle API routes and SPA routing
 
 ## Features
 
 - ✅ Flowchart-based deadline calculator
 - ✅ Conditional question flow
-- ✅ Real-time deadline calculation
+- ✅ Real-time deadline calculation via serverless functions
 - ✅ Backend API for calculations
 - ✅ Modern, responsive UI
 - ✅ Vercel-ready deployment
 
 ## Next Steps
 
-1. Add MongoDB models for storing calculation history
-2. Add authentication (JWT, Passport.js)
-3. Implement CRUD operations for deadline tracking
-4. Add user accounts and saved calculations
+1. Add database for storing calculation history (if needed)
+2. Add authentication (if user accounts are needed)
+3. Add saved calculations feature
+4. Export/print functionality

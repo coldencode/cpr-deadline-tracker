@@ -1,10 +1,48 @@
 .result-display {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 12px;
+  background: var(--result-gradient);
+  border-radius: 20px;
   padding: 32px;
   margin-top: 32px;
   color: white;
-  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 8px 32px var(--shadow-primary);
+  animation: slideIn 0.5s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.result-display::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+[data-theme="dark"] .result-display {
+  box-shadow: 0 8px 32px var(--shadow-primary-dark);
 }
 
 .result-header h2 {
@@ -19,7 +57,7 @@
   margin-bottom: 20px;
   text-align: center;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--result-overlay);
   border-radius: 8px;
   backdrop-filter: blur(10px);
 }
@@ -27,7 +65,7 @@
 .calculation-details {
   margin-top: 20px;
   padding: 16px;
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--result-overlay);
   border-radius: 8px;
 }
 
@@ -44,7 +82,7 @@
 .result-note {
   margin-top: 20px;
   padding: 12px;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--result-overlay);
   border-radius: 6px;
   font-size: 0.9rem;
 }
