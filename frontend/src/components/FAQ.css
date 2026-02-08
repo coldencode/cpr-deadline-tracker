@@ -16,13 +16,9 @@
 .faq-title {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--text-primary);
+  color: var(--gradient-text);
   margin: 0 0 32px 0;
   text-align: center;
-  background: var(--gradient-text);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .faq-list {
@@ -95,7 +91,7 @@
 }
 
 .faq-item.open .faq-icon {
-  background: var(--gradient-primary);
+  background: var(--color-primary);
   color: white;
   transform: rotate(180deg);
 }

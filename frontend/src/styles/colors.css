@@ -11,12 +11,12 @@
   --color-secondary: #4facfe;
   --color-accent: #00f2fe;
 
-  /* Gradient Colors */
-  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #4facfe 100%);
-  --gradient-accent: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
-  --gradient-button: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-  --gradient-text: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  /* Simple Colors - No Gradients */
+  --gradient-primary: #667eea;
+  --gradient-secondary: #4facfe;
+  --gradient-accent: #667eea;
+  --gradient-button: #e74c3c;
+  --gradient-text: #667eea;
 
   /* Background Colors - Light Mode */
   --bg-primary-light: #ffffff;
@@ -36,9 +36,9 @@
   --bg-radio-dark: rgba(30, 30, 46, 0.6);
   --bg-radio-hover-dark: rgba(102, 126, 234, 0.2);
 
-  /* Background Gradients */
-  --bg-gradient-light: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
-  --bg-gradient-dark: linear-gradient(135deg, #1a1a2e 0%, #16213e 25%, #0f3460 50%, #1a1a2e 75%, #16213e 100%);
+  /* Background Colors - Simple Solid Colors */
+  --bg-gradient-light: #f5f7fa;
+  --bg-gradient-dark: #1a1a2e;
 
   /* Text Colors - Light Mode */
   --text-primary-light: #333;

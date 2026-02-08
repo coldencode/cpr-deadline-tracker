@@ -1,5 +1,5 @@
 .result-display {
-  background: var(--result-gradient);
+  background: var(--color-primary);
   border-radius: 20px;
   padding: 32px;
   margin-top: 32px;
@@ -8,17 +8,6 @@
   animation: slideIn 0.5s ease;
   position: relative;
   overflow: hidden;
-}
-
-.result-display::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  right: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-  animation: rotate 20s linear infinite;
 }
 
 @keyframes slideIn {
@@ -32,16 +21,8 @@
   }
 }
 
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 [data-theme="dark"] .result-display {
+  background: var(--color-primary-dark);
   box-shadow: 0 8px 32px var(--shadow-primary-dark);
 }
 
